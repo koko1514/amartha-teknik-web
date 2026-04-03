@@ -278,6 +278,10 @@
             if(contactForm) contactForm.reset();
             if(successMessage) successMessage.classList.add('hidden');
             if(contactForm) contactForm.classList.remove('invisible');
+            if(submitBtn) {
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = '<i class="fas fa-paper-plane mr-2"></i><span>Send Message</span>';
+            }
         }
 
         if(contactForm) { 
@@ -320,12 +324,12 @@
                             });
                         } else {
                             alert('Maaf, terjadi kesalahan pada server. Silakan coba lagi nanti.');
-                            submitBtn.disabled = false;
-                            submitBtn.innerHTML = originalBtnContent;
                         }
                     })
                     .catch(error => {
                         alert('Terjadi kesalahan koneksi. Silakan periksa koneksi internet Anda.');
+                    })
+                    .finally(() => {
                         submitBtn.disabled = false;
                         submitBtn.innerHTML = originalBtnContent;
                     });
