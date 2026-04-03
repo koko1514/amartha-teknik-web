@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>PT. Amartha Teknik Sejahtera | Conveyor Belt Systems</title>
+    <!-- Tailwind CSS v3 + Font Awesome + Google Fonts -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Google Fonts: Poppins for Headings, Inter for Body -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <!-- AOS Animation CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background-color: #0047AB; }
+        h1, h2, h3, h4, h5, h6, .heading-font { font-family: 'Poppins', sans-serif; }
+        html { scroll-behavior: smooth; }
+        .nav-active { color: #FFDB58 !important; font-weight: 700; border-bottom: 2px solid #FFDB58; }
+        .btn-mustard { background-color: #FFDB58; color: #0a2540; transition: all 0.2s ease; font-family: 'Inter', sans-serif; font-weight: 600; }
+        .btn-mustard:hover { background-color: #e6c34a; transform: translateY(-2px); box-shadow: 0 10px 20px -5px rgba(0,0,0,0.2); }
+        .card-white { background-color: #ffffff; border-radius: 1.5rem; transition: all 0.25s ease; }
+        .card-white:hover { transform: translateY(-4px); box-shadow: 0 20px 25px -12px rgba(0,0,0,0.15); }
+        .gallery-img { width: 100%; height: 200px; object-fit: cover; border-radius: 1rem; transition: transform 0.3s ease, box-shadow 0.3s ease; cursor: pointer; }
+        .gallery-img:hover { transform: scale(1.03); box-shadow: 0 20px 30px -12px rgba(0,0,0,0.3); }
+        footer a:hover { color: #FFDB58; transition: 0.2s; }
+        .faq-item { border-bottom: 1px solid rgba(0,0,0,0.08); }
+        .section-container { transition: opacity 0.25s ease; }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #0f3b7a; }
+        ::-webkit-scrollbar-thumb { background: #FFDB58; border-radius: 12px; }
+        .lightbox { display: none; position: fixed; z-index: 999; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.9); justify-content: center; align-items: center; cursor: pointer; }
+        .lightbox-img { max-width: 90%; max-height: 90%; border-radius: 12px; box-shadow: 0 0 30px rgba(0,0,0,0.5); }
+        .close-lightbox { position: absolute; top: 20px; right: 35px; color: #fff; font-size: 40px; font-weight: bold; transition: 0.3s; cursor: pointer; }
+        .close-lightbox:hover { color: #FFDB58; }
+        .company-logo { height: 42px; width: auto; object-fit: contain; }
+        .nav-btn { font-family: 'Inter', sans-serif; font-weight: 500; }
+        #backToTop { position: fixed; bottom: 30px; right: 30px; z-index: 99; display: none; }
+        #loader { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: #0047AB; z-index: 9999; display: flex; justify-content: center; align-items: center; transition: opacity 0.5s ease; }
+        .spinner { width: 60px; height: 60px; border: 5px solid rgba(255, 255, 255, 0.3); border-top: 5px solid #FFDB58; border-radius: 50%; animation: spin 1s linear infinite; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        .bg-white-section { background-color: #ffffff; }
+        .bg-blue-section { background-color: #0047AB; }
+    </style>
+</head>
+<body>
+
+    <!-- LOADING SPINNER -->
+    <div id="loader"><div class="text-center"><div class="spinner mx-auto"></div><p class="text-white mt-4 font-medium">Loading...</p></div></div>
+
+    <!-- Navigation Bar -->
+    <nav class="bg-white shadow-md sticky top-0 z-50 border-b border-gray-200">
+        <div class="max-w-7xl mx-auto px-5 md:px-8 py-3 flex flex-wrap items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <img src="https://i.postimg.cc/x1gMkC5X/Desain-tanpa-judul-(5).png" alt="Logo" class="company-logo h-10 w-auto">
+                <span class="font-extrabold text-xl tracking-tight heading-font" style="color:#0047AB;">AMERTHA TEKNIK <span style="color:#FFDB58;">SEJAHTERA</span></span>
+            </div>
+            <div class="flex space-x-6 md:space-x-8 text-base font-medium">
+                <button class="nav-btn text-gray-700 hover:text-[#0047AB] transition" data-section="home">HOME</button>
+                <button class="nav-btn text-gray-700 hover:text-[#0047AB] transition" data-section="products">PRODUCTS & SERVICES</button>
+                <button class="nav-btn text-gray-700 hover:text-[#0047AB] transition" data-section="location">OUR LOCATION</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Lightbox Modal -->
+    <div id="lightbox" class="lightbox" onclick="closeLightbox()"><span class="close-lightbox">&times;</span><img class="lightbox-img" id="lightboxImg" src=""></div>
+
+    <!-- BACK TO TOP BUTTON -->
+    <button id="backToTop" class="bg-[#FFDB58] hover:bg-[#e6c34a] text-gray-900 w-12 h-12 rounded-full shadow-lg transition-all duration-300 hover:scale-110 flex items-center justify-center"><i class="fas fa-arrow-up text-xl"></i></button>
+
+    <main>
+        <!-- ========== HOME SECTION (always visible first) ========== -->
+        <div id="home" class="section-container">
+            <!-- Hero - BLUE -->
+            <section class="bg-blue-section py-10 md:py-16 px-5">
+                <div class="max-w-7xl mx-auto">
+                    <div data-aos="fade-up" class="text-center mb-16">
+                        <h1 class="text-4xl md:text-6xl font-extrabold text-white leading-tight heading-font">Moving Industry Forward, <span style="color:#FFDB58;">Connecting Indonesia</span></h1>
+                        <p class="text-white text-lg md:text-xl mt-4 max-w-3xl mx-auto opacity-90">Your trusted partner in conveyor belt systems and industrial solutions. Durable, efficient, and globally recognized brands – ATS and Continental.</p>
+                        <div class="mt-8"><button id="exploreProductsBtn" class="btn-mustard px-8 py-3 rounded-full font-bold shadow-lg text-gray-900 text-lg"><i class="fas fa-arrow-right mr-2"></i> Explore Our Products</button></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Feature Cards - WHITE -->
+            <section class="bg-white-section py-16 px-5">
+                <div class="max-w-7xl mx-auto">
+                    <div class="grid md:grid-cols-3 gap-8">
+                        <div data-aos="fade-up" data-aos-delay="100" class="card-white p-6 shadow-md text-center border border-gray-100">
+                            <img src="https://i.postimg.cc/WbWP2df6/Desain_tanpa_judul_(6).png" alt="Global Brand" class="w-20 h-20 mx-auto mb-4 object-contain">
+                            <h3 class="text-xl font-bold text-gray-800 heading-font">Global Brand Access</h3>
+                            <p class="text-gray-600 mt-2">Presenting Continental products, recognized worldwide for superior engineering.</p>
+                        </div>
+                        <div data-aos="fade-up" data-aos-delay="200" class="card-white p-6 shadow-md text-center border border-gray-100">
+                            <img src="https://i.postimg.cc/bNCjzZFC/Desain_tanpa_judul_(7).png" alt="Total Solution" class="w-20 h-20 mx-auto mb-4 object-contain">
+                            <h3 class="text-xl font-bold text-gray-800 heading-font">Total Solution</h3>
+                            <p class="text-gray-600 mt-2">From product selection to installation – we support your operational needs.</p>
+                        </div>
+                        <div data-aos="fade-up" data-aos-delay="300" class="card-white p-6 shadow-md text-center border border-gray-100">
+                            <img src="https://i.postimg.cc/TY7XRKHC/Desain_tanpa_judul_(8).png" alt="Safety" class="w-20 h-20 mx-auto mb-4 object-contain">
+                            <h3 class="text-xl font-bold text-gray-800 heading-font">Safety & Durability</h3>
+                            <p class="text-gray-600 mt-2">Fire, heat, cold, oil & chemical resistant products for harsh environments.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Company Profile - BLUE -->
+            <section class="bg-blue-section py-16 px-5">
+                <div class="max-w-7xl mx-auto">
+                    <div data-aos="fade-right" class="bg-white/10 backdrop-blur-sm rounded-2xl p-6 md:p-8">
+                        <h2 class="text-2xl md:text-3xl font-bold text-white border-l-8 border-[#FFDB58] pl-4 mb-5 heading-font">Company Profile</h2>
+                        <p class="text-white/90 mb-4 leading-relaxed">PT. Amartha Teknik Sejahtera – A company specializing in conveyor belt products and solutions under the <strong class="text-[#FFDB58]">ATS brand</strong> and the globally recognized <strong class="text-[#FFDB58]">Continental brand</strong>. Serving industries such as mining, ports, construction, manufacturing, logistics, and agribusiness. Established in 2025, committed to delivering durable and efficient solutions. Supported by professional services including product selection and installation.</p>
+                        <p class="text-white/90 mb-4">Our products are widely used in industries such as mining, coal, metallurgy, ports, power plants, construction, food processing, and transportation for efficient material handling. They have been exported to more than <strong class="text-[#FFDB58]">40 countries</strong> across Europe, America, Australia, Asia, and Africa.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Vision & Mission - WHITE -->
+            <section class="bg-white-section py-16 px-5">
+                <div class="max-w-7xl mx-auto">
+                    <div class="grid lg:grid-cols-2 gap-10">
+                        <div data-aos="fade-right" class="bg-white p-6 md:p-8 rounded-2xl shadow-lg border border-gray-100 h-full flex flex-col">
+                            <img src="https://i.postimg.cc/8Px54XB0/Desain_tanpa_judul_(9).png" alt="Vision" class="w-20 h-20 mx-auto mb-5 object-contain">
+                            <h3 class="text-2xl font-bold text-gray-800 heading-font text-center mb-4">Vision</h3>
+                            <p class="text-gray-600 leading-relaxed flex-grow">To become Indonesia's most trusted, leading, and innovative provider of conveyor belt products and industrial conveyor system solutions, consistently delivering sustainable added value to customers, partners, and national industries through superior product quality, professional service, and the implementation of modern, efficient, and environmentally friendly technology.</p>
+                        </div>
+                        <div data-aos="fade-left" class="bg-white p-6 md:p-8 rounded-2xl shadow-lg border border-gray-100 h-full flex flex-col">
+                            <img src="https://i.postimg.cc/bN4JgVH3/Desain_tanpa_judul_(10).png" alt="Mission" class="w-20 h-20 mx-auto mb-5 object-contain">
+                            <h3 class="text-2xl font-bold text-gray-800 heading-font text-center mb-4">Mission</h3>
+                            <ul class="list-disc list-inside text-gray-600 space-y-3 flex-grow">
+                                <li>Provide high-quality products complying with national & international standards.</li>
+                                <li>Deliver efficient conveyor solutions for mining, manufacturing, logistics, agribusiness.</li>
+                                <li>Establish broad distribution network for fast service across Indonesia.</li>
+                                <li>Build long-term partnerships based on trust & professionalism.</li>
+                                <li>Develop competent human resources committed to safety & customer satisfaction.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Gallery - BLUE -->
+            <section class="bg-blue-section py-16 px-5">
+                <div class="max-w-7xl mx-auto">
+                    <div data-aos="zoom-in"><h2 class="text-3xl font-bold text-white mb-8 text-center heading-font">GALLERY</h2>
+                    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 md:gap-5" id="galleryGridHome"></div></div>
+                </div>
+            </section>
+
+            <!-- Contact Form & FAQ - WHITE -->
+            <section class="bg-white-section py-16 px-5">
+                <div class="max-w-7xl mx-auto">
+                    <div data-aos="fade-up" class="bg-white p-6 md:p-8 rounded-2xl shadow-lg border border-gray-100 mb-12">
+                        <h2 class="text-2xl md:text-3xl font-bold text-gray-800 mb-6 text-center heading-font">Send Us a Message</h2>
+                        <div id="formContainer" class="relative overflow-hidden">
+                            <!-- Form Success Message (Hidden by default) -->
+                            <div id="successMessage" class="hidden absolute inset-0 bg-white z-10 flex flex-col items-center justify-center text-center p-4">
+                                <div class="w-16 h-16 bg-green-100 text-green-500 rounded-full flex items-center justify-center mb-4 text-2xl">
+                                    <i class="fas fa-check"></i>
+                                </div>
+                                <h3 class="text-2xl font-bold text-gray-800 mb-2">Message Sent!</h3>
+                                <p class="text-gray-600 mb-6 font-medium">Thank you for reaching out. We will get back to you shortly.</p>
+                                <button onclick="resetForm()" class="text-[#0047AB] font-bold hover:underline flex items-center gap-2">
+                                    <i class="fas fa-redo-alt text-sm"></i> Send another message
+                                </button>
+                            </div>
+
+                            <form action="https://formsubmit.co/sergiusaiko15@gmail.com" method="POST" id="contactForm" class="space-y-4">
+                                <!-- FormSubmit Configuration -->
+                                <input type="hidden" name="_captcha" value="false">
+                                <input type="hidden" name="_template" value="box">
+                                <input type="hidden" name="_honey" style="display:none">
+                                
+                                <div class="grid md:grid-cols-2 gap-4">
+                                    <div class="space-y-1">
+                                        <label class="text-xs font-bold text-gray-400 uppercase ml-1">Full Name</label>
+                                        <input type="text" name="Sender Name" id="nameInput" placeholder="Enter your name" required class="w-full p-3 border border-gray-300 rounded-xl focus:outline-none focus:border-[#FFDB58] focus:ring-2 focus:ring-[#FFDB58]/30 transition">
+                                    </div>
+                                    <div class="space-y-1">
+                                        <label class="text-xs font-bold text-gray-400 uppercase ml-1">Email Address</label>
+                                        <input type="email" name="Sender Email" id="emailInput" placeholder="Enter your email" required class="w-full p-3 border border-gray-300 rounded-xl focus:outline-none focus:border-[#FFDB58] focus:ring-2 focus:ring-[#FFDB58]/30 transition">
+                                    </div>
+                                </div>
+                                <div class="space-y-1">
+                                    <label class="text-xs font-bold text-gray-400 uppercase ml-1">Subject</label>
+                                    <input type="text" name="Email Subject" id="subjectInput" placeholder="What is this about?" required class="w-full p-3 border border-gray-300 rounded-xl focus:outline-none focus:border-[#FFDB58] focus:ring-2 focus:ring-[#FFDB58]/30 transition">
+                                    <!-- Hidden subject for the ACTUAL email subject line -->
+                                    <input type="hidden" name="_subject" id="hiddenSubject">
+                                </div>
+                                <div class="space-y-1">
+                                    <label class="text-xs font-bold text-gray-400 uppercase ml-1">Message</label>
+                                    <textarea name="Message Content" id="messageInput" rows="4" placeholder="How can we help you?" required class="w-full p-3 border border-gray-300 rounded-xl focus:outline-none focus:border-[#FFDB58] focus:ring-2 focus:ring-[#FFDB58]/30 transition"></textarea>
+                                </div>
+                                <button type="submit" class="btn-mustard w-full py-4 rounded-xl font-bold flex items-center justify-center space-x-2 text-lg shadow-md hover:shadow-lg active:scale-[0.98] transition-all" id="submitBtn">
+                                    <i class="fas fa-paper-plane mr-2"></i>
+                                    <span>Send Message</span>
+                                </button>
+                            </form>
+                        </div>
+                        <p class="text-center text-gray-500 text-sm mt-4"><i class="fas fa-clock mr-1"></i> We'll respond within 24 hours</p>
+                    </div>
+                    <div data-aos="fade-up" class="bg-white p-6 md:p-8 rounded-2xl shadow-lg border border-gray-100">
+                        <h2 class="text-2xl md:text-3xl font-bold text-gray-800 mb-6 text-center heading-font">Frequently Asked Questions</h2>
+                        <div class="space-y-5">
+                            <div class="faq-item pb-3"><p class="font-semibold text-gray-800"><i class="fas fa-question-circle text-[#FFDB58] mr-2"></i> What brands do you provide?</p><p class="text-gray-600 pl-7">We provide high-quality products under the ATS brand and the globally recognized Continental brand.</p></div>
+                            <div class="faq-item pb-3"><p class="font-semibold text-gray-800"><i class="fas fa-question-circle text-[#FFDB58] mr-2"></i> Do you handle bulk orders for mining or port industries?</p><p class="text-gray-600 pl-7">Yes. We are ready to fulfill large-scale orders for mining, ports, construction, and manufacturing.</p></div>
+                            <div class="faq-item pb-3"><p class="font-semibold text-gray-800"><i class="fas fa-question-circle text-[#FFDB58] mr-2"></i> What are the quality standards of your conveyor belt products?</p><p class="text-gray-600 pl-7">All products meet national and international standards, including resistance to fire, heat, cold, oil, and chemicals.</p></div>
+                            <div class="faq-item pb-3"><p class="font-semibold text-gray-800"><i class="fas fa-question-circle text-[#FFDB58] mr-2"></i> Do you offer installation services?</p><p class="text-gray-600 pl-7">Yes. Our professional services include product selection and installation, including hot & cold splicing.</p></div>
+                            <div class="faq-item pb-2"><p class="font-semibold text-gray-800"><i class="fas fa-question-circle text-[#FFDB58] mr-2"></i> How can I place an order or start a partnership?</p><p class="text-gray-600 pl-7">Please contact us via the information below. Our team will assist with your conveyor solution needs.</p></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- ========== PRODUCTS & SERVICES SECTION (hidden initially) ========== -->
+        <div id="products" class="section-container hidden bg-blue-section py-16 px-5">
+            <div class="max-w-7xl mx-auto">
+                <h2 class="text-4xl font-bold text-white text-center mb-4 heading-font">Products & Services</h2>
+                <p class="text-center text-white/80 mb-12 max-w-2xl mx-auto">Premium conveyor solutions for every industry – each product delivers reliability and performance.</p>
+                <div id="productsGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-7"></div>
+            </div>
+        </div>
+
+        <!-- ========== OUR LOCATION SECTION (hidden initially) ========== -->
+        <div id="location" class="section-container hidden bg-white-section py-16 px-5">
+            <div class="max-w-7xl mx-auto">
+                <div class="grid lg:grid-cols-2 gap-10 items-start">
+                    <div class="bg-white p-6 md:p-8 rounded-2xl shadow-lg border border-gray-100">
+                        <img src="https://i.postimg.cc/FRzTVx4W/Desain-tanpa-judul-(11).png" alt="Office Address" class="w-12 h-12 mb-4 object-contain">
+                        <h3 class="text-2xl font-bold text-gray-800 heading-font mb-4">Office Address</h3>
+                        <p class="text-gray-700 leading-relaxed">Jalan Sultan Agung RT. 011 RW. 003,<br> Pasar Manggis, Setiabudi,<br> South Jakarta, DKI Jakarta 12970</p>
+                        <div class="mt-6 pt-4 border-t border-gray-200">
+                            <p class="flex items-center gap-3 text-gray-700"><i class="fas fa-phone-alt text-[#FFDB58] w-5"></i> +62 852-8227-6161  /  +62 821-2161-6971</p>
+                            <p class="flex items-center gap-3 text-gray-700 mt-2"><i class="fas fa-envelope text-[#FFDB58] w-5"></i> amerthatekniksejahtera@gmail.com</p>
+                            <p class="flex items-center gap-3 text-gray-700 mt-2"><i class="fas fa-clock text-[#FFDB58] w-5"></i> Mon-Fri, 8:00 AM – 5:00 PM (Jakarta time)</p>
+                        </div>
+                    </div>
+                    <div class="rounded-2xl overflow-hidden shadow-xl h-80 lg:h-96 border-4 border-[#0047AB]">
+                        <iframe class="w-full h-full" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.394871077184!2d106.83635719999999!3d-6.2065338!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f5f66f9a8a59%3A0x5b2767413e32281d!2sCastle%20Padel!5e0!3m2!1sen!2sid!4v1743598765432!5m2!1sen!2sid" allowfullscreen="" loading="lazy"></iframe>
+                    </div>
+                </div>
+                <div class="mt-12 text-center"><p class="text-gray-700 text-lg">Need a custom solution? <span class="font-semibold" style="color:#0047AB;">Reach out today</span> and let's move industry forward together.</p></div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-[#002f6c] pt-10 pb-6 border-t border-white/20">
+        <div class="max-w-7xl mx-auto px-5">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+                <div><h4 class="text-white font-semibold heading-font text-lg mb-4">Our Office</h4><p class="text-white/80 text-sm leading-relaxed">Jalan Sultan Agung RT. 011 RW. 003,<br>Pasar Manggis, Setiabudi,<br>South Jakarta, DKI Jakarta 12970<br>Indonesia</p></div>
+                <div><h4 class="text-white font-semibold heading-font text-lg mb-4">Contact Us</h4><div class="space-y-3"><p class="flex items-center gap-3 text-white/80 text-sm"><i class="fas fa-phone-alt text-[#FFDB58] w-5"></i> +62 852-8227-6161</p><p class="flex items-center gap-3 text-white/80 text-sm"><i class="fas fa-phone-alt text-[#FFDB58] w-5"></i> +62 821-2161-6971</p><p class="flex items-center gap-3 text-white/80 text-sm"><i class="fas fa-envelope text-[#FFDB58] w-5"></i> amerthatekniksejahtera@gmail.com</p><p class="flex items-center gap-3 text-white/80 text-sm"><i class="fas fa-clock text-[#FFDB58] w-5"></i> Mon-Fri, 8:00 AM – 4:30 PM</p></div></div>
+                <div><h4 class="text-white font-semibold heading-font text-lg mb-4">Follow Us</h4><div class="flex space-x-4 mb-4"><a href="#" class="bg-white/10 hover:bg-[#FFDB58] hover:text-[#002f6c] w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300"><i class="fab fa-linkedin-in text-white hover:text-[#002f6c]"></i></a><a href="#" class="bg-white/10 hover:bg-[#FFDB58] hover:text-[#002f6c] w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300"><i class="fab fa-instagram text-white hover:text-[#002f6c]"></i></a><a href="#" class="bg-white/10 hover:bg-[#FFDB58] hover:text-[#002f6c] w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300"><i class="fab fa-whatsapp text-white hover:text-[#002f6c]"></i></a></div><p class="text-white/70 text-xs mt-4"><i class="fas fa-certificate text-[#FFDB58] mr-1"></i> Authorized Distributor of ATS & Continental Products</p></div>
+            </div>
+            <div class="border-t border-white/20 pt-6 mt-4 text-center"><p class="text-white/60 text-sm">&copy; 2025 PT. Amertha Teknik Sejahtera. All rights reserved.</p><p class="text-white/50 text-xs mt-1">Moving Industry Forward, Connecting Indonesia</p></div>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({ duration: 800, once: true, offset: 100 });
+
+        window.addEventListener('load', function() { const loader = document.getElementById('loader'); if(loader) { setTimeout(function() { loader.style.opacity = '0'; setTimeout(function() { loader.style.display = 'none'; }, 500); }, 500); } });
+
+        const backToTop = document.getElementById('backToTop');
+        window.addEventListener('scroll', function() { if(window.scrollY > 300) backToTop.style.display = 'flex'; else backToTop.style.display = 'none'; });
+        backToTop.addEventListener('click', function() { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+
+        const contactForm = document.getElementById('contactForm');
+        const submitBtn = document.getElementById('submitBtn');
+        const successMessage = document.getElementById('successMessage');
+        const formContainer = document.getElementById('formContainer');
+
+        function resetForm() {
+            if(contactForm) contactForm.reset();
+            if(successMessage) successMessage.classList.add('hidden');
+            if(contactForm) contactForm.classList.remove('invisible');
+        }
+
+        if(contactForm) { 
+            contactForm.addEventListener('submit', function(e) { 
+                e.preventDefault(); 
+                
+                const name = document.getElementById('nameInput')?.value || ''; 
+                const email = document.getElementById('emailInput')?.value || ''; 
+                const subject = document.getElementById('subjectInput')?.value || ''; 
+                const message = document.getElementById('messageInput')?.value || ''; 
+                
+                if(name && email && subject && message) { 
+                    // Sync the visible subject with the hidden FormSubmit subject config
+                    const hiddenSubject = document.getElementById('hiddenSubject');
+                    if (hiddenSubject) hiddenSubject.value = `ATS: ${subject}`;
+
+                    // Visual feedback: Loading state
+                    const originalBtnContent = submitBtn.innerHTML;
+                    submitBtn.disabled = true;
+                    submitBtn.innerHTML = '<i class="fas fa-circle-notch fa-spin mr-2"></i>Sending...';
+
+                    const formData = new FormData(contactForm);
+                    
+                    fetch(contactForm.action, {
+                        method: 'POST',
+                        body: formData,
+                        headers: {
+                            'Accept': 'application/json'
+                        }
+                    })
+                    .then(response => {
+                        if (response.ok) {
+                            // Professional UI transition
+                            contactForm.classList.add('invisible');
+                            successMessage.classList.remove('hidden');
+                            successMessage.classList.add('animate-fade-in');
+                            window.scrollTo({
+                                top: formContainer.offsetTop - 100,
+                                behavior: 'smooth'
+                            });
+                        } else {
+                            alert('Maaf, terjadi kesalahan pada server. Silakan coba lagi nanti.');
+                            submitBtn.disabled = false;
+                            submitBtn.innerHTML = originalBtnContent;
+                        }
+                    })
+                    .catch(error => {
+                        alert('Terjadi kesalahan koneksi. Silakan periksa koneksi internet Anda.');
+                        submitBtn.disabled = false;
+                        submitBtn.innerHTML = originalBtnContent;
+                    });
+                } else { 
+                    alert('Mohon isi semua bidang yang diperlukan.'); 
+                } 
+            }); 
+        }
+        window.resetForm = resetForm;
+
+        const productsList = [
+            { name: "Steel Cord", desc: "Conveyor belt with a steel wire core that has high tensile strength and is suitable for heavy loads over long distances.", image: "https://i.postimg.cc/T1rY7gjX/078f5aae_6df0_4ba2_8172_558029927cda.jpg" },
+            { name: "Sidewall Rubber", desc: "Conveyor belt with sidewalls to prevent material spillage on steep incline angles.", image: "https://i.postimg.cc/PxzLCWgq/Whats_App_Image_2026_04_02_at_19_37_45.jpg" },
+            { name: "Pipe", desc: "Conveyor belt formed into a closed pipe shape to avoid dust, spillage, and material contamination.", image: "https://i.postimg.cc/4djgTy4m/Screenshot_2026_04_02_212533.png" },
+            { name: "Multi-Ply Fabric", desc: "Conveyor belt made of layered fabric that is flexible and suitable for general use.", image: "https://i.postimg.cc/d1gYK3Q3/Screenshot_2026_04_02_212642.png" },
+            { name: "Chevron Rubber", desc: "Conveyor belt with a V-shaped surface pattern to prevent material from rolling back on inclined areas.", image: "https://i.postimg.cc/fL1NhyWx/Screenshot_2026_04_02_212709.png" },
+            { name: "Fire Resistant", desc: "Fire-resistant conveyor belt safe for use in high-risk environments such as mines.", image: "https://i.postimg.cc/B6R0GbZ2/Screenshot_2026_04_02_212727.png" },
+            { name: "Heat Resistant", desc: "Conveyor belt designed to withstand high temperatures without damaging the belt structure.", image: "https://i.postimg.cc/C5DVM0dq/Screenshot_2026_04_02_212741.png" },
+            { name: "Cold Resistant", desc: "Conveyor belt that remains flexible and strong at low temperatures or in cold environments.", image: "https://i.postimg.cc/HWP2d5Cz/Whats-App-Image-2026-04-02-at-21-41-21.jpg" },
+            { name: "Oil Resistant", desc: "Conveyor belt resistant to oil, making it not easily damaged or swollen.", image: "https://i.postimg.cc/63FXNq60/Screenshot_2026_04_02_212800.png" },
+            { name: "Acid and Alkali Resistance", desc: "Conveyor belt resistant to acid and alkali chemicals.", image: "https://i.postimg.cc/J0JW78t3/Screenshot_2026_04_02_212813.png" },
+            { name: "White", desc: "White-colored conveyor belt that is hygienic, suitable for the food and pharmaceutical industries.", image: "https://i.postimg.cc/x8HSjQqv/Screenshot_2026_04_02_212828.png" },
+            { name: "Rough Top", desc: "Conveyor belt with a rough surface to improve grip and prevent slipping.", image: "https://i.postimg.cc/XqF0NWXk/Screenshot_2026_04_02_212840.png" },
+            { name: "Bucket Elevator", desc: "Vertical conveyor system using buckets to efficiently lift materials.", image: "https://i.postimg.cc/d3dKQFD6/Screenshot_2026_04_02_212900.png" },
+            { name: "Rubber Sheet", desc: "Versatile rubber sheet for linings, dampening, and other industrial needs.", image: "https://i.postimg.cc/sxSRfz1L/Screenshot_2026_04_02_212923.png" },
+            { name: "Conveyor Belt Roller", desc: "Support roller for conveyor belts to keep movement stable and efficient.", image: "https://i.postimg.cc/vHvvJ9Ds/Whats_App_Image_2026_04_02_at_19_36_42.jpg" },
+            { name: "Butterfly Valve", desc: "Fluid flow control valve that operates with a rotary disc mechanism.", image: "https://i.postimg.cc/wvnpdMxj/eb778b1c_41ef_40e4_851f_9d45d28fcf7f.jpg" },
+            { name: "Jaw Crusher", desc: "Machine for crushing hard materials such as stone using a jaw pressure system.", image: "https://i.postimg.cc/2y48chdm/859e8c6c_5903_4259_b5b4_5b27caab6710.jpg" },
+            { name: "Fastener", desc: "Conveyor belt fastener for quick and practical belt joining.", image: "https://i.postimg.cc/nrvcRB45/3d744e35_95f5_4e31_8fb2_cf94eebf3670.jpg" },
+            { name: "Hot and Cold Splicing", desc: "Conveyor belt splicing methods using heat or heatless techniques as needed.", image: "https://i.postimg.cc/wMhTfL5z/90a7146e_5e7f_4855_a878_bd75bbc00550.jpg" }
+        ];
+
+        const productsGrid = document.getElementById("productsGrid");
+        if(productsGrid) { productsGrid.innerHTML = ""; productsList.forEach(prod => { const card = document.createElement("div"); card.className = "bg-white p-4 rounded-2xl shadow-lg flex flex-col h-full transition-all hover:transform hover:-translate-y-1 hover:shadow-xl"; card.innerHTML = `<div class="mb-4 overflow-hidden rounded-xl bg-gray-100 h-40 flex items-center justify-center"><img src="${prod.image}" alt="${prod.name}" class="w-full h-full object-cover hover:scale-105 transition-transform duration-300"></div><h3 class="font-extrabold text-xl text-gray-800 heading-font">${prod.name}</h3><p class="text-gray-600 text-sm mt-2 flex-grow">${prod.desc}</p>`; productsGrid.appendChild(card); }); }
+
+        const galleryImages = ["https://i.postimg.cc/vHvvJ9Ds/Whats-App-Image-2026-04-02-at-19-36-42.jpg","https://i.postimg.cc/pL6KvBHs/Whats-App-Image-2026-04-02-at-19-36-43-(1).jpg","https://i.postimg.cc/k4d6M1hw/Whats_App_Image_2026_04_02_at_19_36_44.jpg","https://i.postimg.cc/gJqwxVfM/Whats_App_Image_2026_04_02_at_19_36_45.jpg","https://i.postimg.cc/qRdhBbZY/Whats_App_Image_2026_04_02_at_19_36_45_(1).jpg","https://i.postimg.cc/FRQdFWnw/Whats_App_Image_2026_04_02_at_19_36_45_(2).jpg","https://i.postimg.cc/sXRQf600/Whats_App_Image_2026_04_02_at_19_36_46.jpg","https://i.postimg.cc/RFQ3W7jk/Whats_App_Image_2026_04_02_at_19_37_43.jpg","https://i.postimg.cc/NM7yK6Wz/Whats_App_Image_2026_04_02_at_19_37_43_(1).jpg","https://i.postimg.cc/vBL14rJM/Whats_App_Image_2026_04_02_at_19_37_44.jpg","https://i.postimg.cc/qRXtNs9W/Whats_App_Image_2026_04_02_at_19_37_44_(1).jpg","https://i.postimg.cc/PxzLCWgq/Whats_App_Image_2026_04_02_at_19_37_45.jpg","https://i.postimg.cc/85BF7R2k/Whats_App_Image_2026_04_02_at_19_37_45_(1).jpg","https://i.postimg.cc/nzYsX4yh/Whats_App_Image_2026_04_02_at_19_37_45_(2).jpg","https://i.postimg.cc/ncQJTFLF/Whats_App_Image_2026_04_02_at_19_36_44_(1).jpg","https://i.postimg.cc/rFtkgVpW/Whats_App_Image_2026_04_02_at_19_36_44_(2).jpg"];
+        const galleryGridHome = document.getElementById("galleryGridHome");
+        if(galleryGridHome) { galleryGridHome.innerHTML = ""; galleryImages.forEach((imgUrl) => { const imgDiv = document.createElement("div"); imgDiv.className = "overflow-hidden rounded-xl shadow-lg bg-white/10 backdrop-blur-sm"; imgDiv.innerHTML = `<img src="${imgUrl}" alt="Gallery" class="gallery-img w-full h-48 object-cover" loading="lazy" onclick="openLightbox('${imgUrl}')">`; galleryGridHome.appendChild(imgDiv); }); }
+
+        function openLightbox(imgSrc) { const lightbox = document.getElementById("lightbox"); const lightboxImg = document.getElementById("lightboxImg"); lightbox.style.display = "flex"; lightboxImg.src = imgSrc; }
+        function closeLightbox() { document.getElementById("lightbox").style.display = "none"; }
+        window.openLightbox = openLightbox; window.closeLightbox = closeLightbox;
+
+        const sections = { home: document.getElementById("home"), products: document.getElementById("products"), location: document.getElementById("location") };
+        const navBtns = document.querySelectorAll(".nav-btn");
+        function showSection(sectionId) { Object.keys(sections).forEach(id => { if(sections[id]) sections[id].classList.add("hidden"); }); if(sections[sectionId]) sections[sectionId].classList.remove("hidden"); navBtns.forEach(btn => { const btnSection = btn.getAttribute("data-section"); if(btnSection === sectionId) btn.classList.add("nav-active"); else btn.classList.remove("nav-active"); }); }
+        navBtns.forEach(btn => { btn.addEventListener("click", () => { const sectionId = btn.getAttribute("data-section"); if(sectionId && sections[sectionId]) { showSection(sectionId); window.scrollTo({ top: 0, behavior: "smooth" }); } }); });
+        document.getElementById("exploreProductsBtn")?.addEventListener("click", () => { showSection("products"); window.scrollTo({ top: 0, behavior: "smooth" }); });
+        showSection("home");
+    </script>
+</body>
+</html>
